@@ -7,7 +7,7 @@ export default defineConfig({
   name: 'default',
   title: 'showMe',
 
-  projectId: 'rp3cj7s5',
+  projectId: 'uitk8kpn',
   dataset: 'production',
 
   plugins: [deskTool(), visionTool()],
