@@ -4,11 +4,15 @@ import {useNavigate} from 'react-router-dom';
 import {FcGoogle} from 'react-icons/fc'; 
 import shareVideo from '../assets/share.mp4';
 import logo from '../assets/logowhite.png';
+import jwt_decode from "jwt-decode";
 
 
 const Login = () => {
   const responseGoogle = (response) => {
+    // localStorage.setItem("user", JSON.stringify(response.profile));
     console.log(response);
+    let decoded = jwt_decode(response.credential);
+    console.log(decoded);
   }
 
   return (
