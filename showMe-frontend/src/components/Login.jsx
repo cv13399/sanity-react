@@ -5,14 +5,29 @@ import {FcGoogle} from 'react-icons/fc';
 import shareVideo from '../assets/share.mp4';
 import logo from '../assets/logowhite.png';
 import jwt_decode from "jwt-decode";
+import {client} from "../client";
 
 
 const Login = () => {
+  const navigate = useNavigate();
+
   const responseGoogle = (response) => {
-    // localStorage.setItem("user", JSON.stringify(response.profile));
-    console.log(response);
     let decoded = jwt_decode(response.credential);
     console.log(decoded);
+    localStorage.setItem("user", JSON.stringify(decoded));
+
+    const {name, sub, picture} = decoded;
+    const doc = {
+      _id: sub,
+      _type: 'user',
+      username: name,
+      image: picture
+    }
+
+    client.createIfNotExists(doc)
+      .then(() => {
+        navigate('/',  {replace: true })
+      })
   }
 
   return (
